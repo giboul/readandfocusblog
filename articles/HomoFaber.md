@@ -7,7 +7,7 @@ translator: Axel Giboulot
 ---
 
 Regarding human intelligence,
-we have not sufficiently noticed that mechanical invention are originally at its core,
+we have not sufficiently noticed that mechanical invention was originally at its core,
 that our social life revolves around the manufacture and use of artificial tools to this day,
 that the inventions which mark the road of progress have also set its direction.
 We hardly notice, because the changes in mankind lag behind the advances of its tooling.
