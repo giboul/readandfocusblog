@@ -1,0 +1,10 @@
+---
+layout: base.njk
+---
+<h1>{{ title }}</h1>
+<p class="meta">
+  {{ author }}{% if date %}, {{ date }}{% endif %}{% if place %}, {{ place }}{% endif %}
+  {%- if translator %} · translated by {{ translator }}{% endif %}
+  {%- if source %} · <a href="{{ source }}">source</a>{% endif %}
+</p>
+{{ content | safe }}

@@ -1,0 +1,16 @@
+# Builds the blog and publishes it with GitLab Pages on every push to the default branch.
+pages:
+  image: node:22
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  cache:
+    paths:
+      - node_modules/
+  script:
+    - npm ci
+    # The site is served from a sub-path (e.g. /readandfocusblog/); take it from the Pages URL.
+    - PREFIX="$(echo "$CI_PAGES_URL" | sed -E 's|^https?://[^/]+||')/"
+    - npx eleventy --output=public --pathprefix="$PREFIX"
+  artifacts:
+    paths:
+      - public
