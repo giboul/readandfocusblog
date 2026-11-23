@@ -10,7 +10,7 @@ layout: base.njk
 {%- endfor %}
 </ul>
 
-<h2>Articles</h2>
+<h2>All articles</h2>
 <ul class="list">
 {%- for a in collections.articles %}
   <li><a href="{{ a.url }}">{{ a.data.title }}</a> <span class="meta">{{ a.data.author }}{% if a.data.date %}, {{ a.data.date }}{% endif %}</span></li>
