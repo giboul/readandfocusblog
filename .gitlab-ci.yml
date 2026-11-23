@@ -9,7 +9,7 @@ pages:
   script:
     - npm ci
     # pandoc and LaTeX typeset the PDF version of every article (fonts-extra has Libertine and the Romantik initials).
-    - apt-get update && apt-get install -y --no-install-recommends pandoc texlive-xetex texlive-fonts-extra texlive-fonts-extra-links lmodern
+    - apt-get update && apt-get install -y --no-install-recommends pandoc texlive-xetex texlive-fonts-recommended texlive-fonts-extra texlive-fonts-extra-links lmodern
     # The site is served from a sub-path (e.g. /readandfocusblog/); take it from the Pages URL.
     - PREFIX="$(echo "$CI_PAGES_URL" | sed -E 's|^https?://[^/]+||')/"
     - npx eleventy --output=public --pathprefix="$PREFIX"

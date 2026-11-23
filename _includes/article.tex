@@ -486,6 +486,8 @@ $endif$
 \input{Romantik.fd}
 \renewcommand{\LettrineFontHook}{\usefont{U}{Romantik}{xl}{n}}
 \setcounter{DefaultLines}{3}
+% Newer versions of pandoc than this template wrap images in this command
+\providecommand{\pandocbounded}[1]{#1}
 % ---------------------------------------------------------------------------
 
 \begin{document}
