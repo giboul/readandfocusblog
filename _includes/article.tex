@@ -9,9 +9,7 @@ $if(CJKmainfont)$
 $endif$
 %
 \documentclass[
-$if(fontsize)$
-  $fontsize$,
-$endif$
+11pt,
 $if(papersize)$
   $papersize$paper,
 $endif$
@@ -478,6 +476,13 @@ $endif$
 $endif$
 
 % --- Additions to pandoc's default template -------------------------------
+\usepackage[
+    a4paper,
+    left = 3 cm,
+    right = 3 cm,
+    bottom = 3 cm,
+    top = 3 cm
+]{geometry}
 % The typeface of the site: Linux Libertine (OpenType), with Biolinum as sans serif
 \usepackage{libertine}
 % The decorated initial that opens every article: _includes/lettrine.lua
