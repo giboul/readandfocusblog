@@ -27,8 +27,8 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
       - run: npm ci
-      # pandoc and LaTeX typeset the PDF version of every article (fonts-extra has the Romantik initials).
-      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends pandoc texlive-xetex texlive-fonts-extra lmodern fonts-linux-libertine
+      # pandoc and LaTeX typeset the PDF version of every article (fonts-extra has Libertine and the Romantik initials).
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends pandoc texlive-xetex texlive-fonts-extra texlive-fonts-extra-links lmodern
       # The site is served from a sub-path (e.g. /readandfocusblog/); take it from the Pages config.
       - run: npx eleventy --pathprefix="${{ steps.pages.outputs.base_path }}/"
       - uses: actions/upload-pages-artifact@v3
