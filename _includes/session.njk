@@ -28,3 +28,14 @@ layout: base.njk
 {%- endfor %}
 </ul>
 {% endif %}
+
+{% if suggestions %}
+<h2>Suggestions</h2>
+<ul class="list">
+{%- for item in suggestions %}
+  {%- for name, info in item %}
+  <li>{% if info.source %}<a href="{{ info.source }}">{{ name }}</a>{% else %}{{ name }}{% endif %} <span class="meta">{{ info.author }}{% if info.date %}, {{ info.date }}{% endif %}</span></li>
+  {%- endfor %}
+{%- endfor %}
+</ul>
+{% endif %}
