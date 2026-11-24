@@ -491,6 +491,12 @@ $endif$
 \input{Romantik.fd}
 \renewcommand{\LettrineFontHook}{\usefont{U}{Romantik}{xl}{n}}
 \setcounter{DefaultLines}{3}
+% The filter calls this after that first paragraph: one shorter than its
+% initial is padded with empty lines, or the initial would run into what follows.
+\newcommand{\lettrinepad}{%
+  \ifnum\prevgraf<\value{DefaultLines}%
+    \vspace{\numexpr\value{DefaultLines}-\prevgraf\relax\baselineskip}%
+  \fi}
 % Newer versions of pandoc than this template wrap images in this command
 \providecommand{\pandocbounded}[1]{#1}
 % ---------------------------------------------------------------------------

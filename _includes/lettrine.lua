@@ -1,12 +1,13 @@
 -- Pandoc filter for the PDFs: the first paragraph of an article opens with a
--- decorated initial, \lettrine{R}{egarding} (see _includes/article.tex).
+-- decorated initial, \lettrine{R}{egarding}, and is followed by \lettrinepad
+-- (see _includes/article.tex).
 
 -- Quotation marks that may come before the initial: \lettrine[ante=“]{T}{he}.
 -- (pandoc reads a paragraph starting with ‘ as starting with ’, hence the last one)
 local quotes = { ["\""] = "“", ["'"] = "‘", ["“"] = "“", ["‘"] = "‘", ["«"] = "«", ["’"] = "‘" }
 
 function Pandoc(doc)
-  for _, block in ipairs(doc.blocks) do
+  for i, block in ipairs(doc.blocks) do
     local first = block.t == "Para" and block.content[1]
     if first and first.t == "Str" then
       local word, options = first.text, ""
@@ -21,6 +22,8 @@ function Pandoc(doc)
         block.content[1] = pandoc.RawInline("latex", "\\lettrine" .. options .. "{" .. initial:upper() .. "}{")
         block.content:insert(2, pandoc.Str(rest))
         block.content:insert(3, pandoc.RawInline("latex", "}"))
+        -- keeps what follows clear of the initial when the paragraph is shorter than it
+        doc.blocks:insert(i + 1, pandoc.RawBlock("latex", "\\lettrinepad"))
       end
       return doc
     end

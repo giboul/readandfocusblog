@@ -4,16 +4,18 @@ import { stat } from "node:fs/promises";
 import { promisify } from "node:util";
 
 const PDF_TEMPLATE = "_includes/article.tex"; // pandoc's default LaTeX template (pandoc -D latex), to edit freely
+const PDF_FILTER = "_includes/lettrine.lua"; // decorated initial on the first paragraph
 const mtime = (file) => stat(file).then((s) => s.mtimeMs, () => 0); // 0 if the file does not exist
 
 // Typesets one article as a PDF with pandoc and LaTeX, unless the PDF is already up to date.
 async function buildPdf(markdown, pdf) {
-  if ((await mtime(pdf)) > Math.max(await mtime(markdown), await mtime(PDF_TEMPLATE))) return;
+  const sources = await Promise.all([markdown, PDF_TEMPLATE, PDF_FILTER].map(mtime));
+  if ((await mtime(pdf)) > Math.max(...sources)) return;
   await promisify(execFile)("pandoc", [
     markdown,
     `--output=${pdf}`,
     `--template=${PDF_TEMPLATE}`,
-    "--lua-filter=_includes/lettrine.lua", // decorated initial on the first paragraph
+    `--lua-filter=${PDF_FILTER}`,
     "--pdf-engine=xelatex",
     "--shift-heading-level-by=-1", // the title is the only level 1 heading, as on the web page
   ]);
