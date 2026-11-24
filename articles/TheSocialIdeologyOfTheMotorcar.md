@@ -54,6 +54,3 @@ These new cities might be federations of communities (or neighborhoods) surround
 
 Meanwhile, what is to be done to get there? Above all, never make transportation an issue by itself. Always connect it to the problem of the city, of the social division of labour, and to the way this compartmentalizes the many dimensions of life. One place for work, another for “living,” a third for shopping, a fourth for learning, a fifth for entertainment. The way our space is arranged carries on the disintegration of people that begins with the division of labour in the factory. It cuts a person into slices, it cuts our time, our life, into separate slices so that in each one you are a passive consumer at the mercy of the merchants, so that it never occurs to you that work, culture, communication, pleasure, satisfaction of needs, and personal life can and should be one and the same thing: a unified life, sustained by the social fabric of the community.
 
-From _Le Sauvage_, September-October 1973.
-_Translated by Patsy Vigderman in_ Ecology as Politics _(Black Rose Books, 1980)._
-_André Gorz was a philosopher, journalist, and writer. He was known as one of the first ecosocialists and political ecologists._
