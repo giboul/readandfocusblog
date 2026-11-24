@@ -29,3 +29,13 @@ function Pandoc(doc)
     end
   end
 end
+
+-- The link to the source is printed under the date. Pandoc would escape the
+-- address as if it were text; \url only needs its % and # escaped.
+function Meta(meta)
+  if meta.source then
+    local address = pandoc.utils.stringify(meta.source):gsub("[%%#]", "\\%0")
+    meta.source = pandoc.MetaInlines({ pandoc.RawInline("latex", "\\url{" .. address .. "}") })
+    return meta
+  end
+end
