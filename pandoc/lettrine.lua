@@ -1,6 +1,6 @@
 -- Pandoc filter for the PDFs: the first paragraph of an article opens with a
 -- decorated initial, \lettrine{R}{egarding}, and is followed by \lettrinepad
--- (see _includes/article.tex).
+-- (see pandoc/article.tex).
 
 -- Quotation marks that may come before the initial: \lettrine[ante=“]{T}{he}.
 -- (pandoc reads a paragraph starting with ‘ as starting with ’, hence the last one)

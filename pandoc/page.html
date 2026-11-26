@@ -1,29 +1,47 @@
-{#- Shared page skeleton: every other layout fills in {{ content }}. -#}
-{%- set siteTitle = "Reading and focus groups" -%}
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if title %}{{ title }} · {% endif %}{{ siteTitle }}</title>
+  <title>$pagetitle$</title>
   <meta name="color-scheme" content="light dark">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="$root$style.css">
   <script>
     try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
 </head>
 <body>
   <header>
-    {% if page.url == "/" %}<span></span>{% else %}<a href="/">{{ siteTitle }}</a>{% endif %}
+    $if(root)$<a href="$root$index.html">$site$</a>$else$<span></span>$endif$
     <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode" title="Light / dark">
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"></path></svg>
     </button>
   </header>
   <main>
-    {{ content | safe }}
+$if(title)$
+<h1>$title$</h1>
+$if(pdf)$
+<p class="meta">
+  $author$$if(date)$, $date$$endif$$if(place)$, $place$$endif$$if(translator)$ · translated by $translator$$endif$$if(source)$ · <a href="$source$">source</a>$endif$
+  · <a href="$pdf$">PDF</a>
+</p>
+$else$
+<p class="meta">Session of $date$</p>
+$endif$
+$endif$
+$body$
+$for(lists)$
+
+<h2>$it.heading$</h2>
+<ul class="list">
+$for(it.items)$
+  <li>$if(it.url)$<a href="$it.url$">$it.title$</a>$else$$it.title$$endif$ <span class="meta">$it.byline$</span></li>
+$endfor$
+</ul>
+$endfor$
   </main>
   <footer class="meta">
-    By PhD students from EPFL · Website built with <a href="https://www.11ty.dev/">Eleventy</a>
+    By PhD students from EPFL · Website built with <a href="https://pandoc.org/">pandoc</a>
   </footer>
   <script>
     document.querySelector(".theme-toggle").addEventListener("click", function () {

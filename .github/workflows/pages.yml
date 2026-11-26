@@ -20,20 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - id: pages
-        uses: actions/configure-pages@v5
-      - run: npm ci
-      # pandoc and LaTeX typeset the PDF version of every article (fonts-extra has Libertine and the Romantik initials).
-      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends pandoc texlive-xetex texlive-fonts-recommended texlive-fonts-extra texlive-fonts-extra-links lmodern
-      # The site is served from a sub-path (e.g. /readandfocusblog/); take it from the Pages config.
-      - run: npx eleventy --pathprefix="${{ steps.pages.outputs.base_path }}/"
+      # pandoc builds the pages; with LaTeX it typesets the PDF version of every article (fonts-extra has Libertine and the Romantik initials).
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends make pandoc texlive-xetex texlive-fonts-recommended texlive-fonts-extra texlive-fonts-extra-links lmodern
+      - run: make
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: public
 
   deploy:
     needs: build
